@@ -1,16 +1,15 @@
 package com.academy.subscription.controller;
 
-import com.academy.subscription.dto.CreateMembershipRequest;
-import com.academy.subscription.entity.Membership;
-import com.academy.subscription.service.MembershipService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.academy.subscription.dto.CreateMembershipRequest;
+import com.academy.subscription.entity.Membership;
+import com.academy.subscription.service.MembershipService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/memberships")

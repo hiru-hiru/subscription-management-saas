@@ -1,7 +1,6 @@
 package com.academy.subscription.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class CreateSubscriptionRequest {
