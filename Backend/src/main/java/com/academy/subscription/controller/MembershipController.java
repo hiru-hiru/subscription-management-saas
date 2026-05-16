@@ -1,15 +1,15 @@
 package com.academy.subscription.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.academy.subscription.dto.MembershipSummaryResponse;
+import org.springframework.web.bind.annotation.*;
 
 import com.academy.subscription.dto.CreateMembershipRequest;
 import com.academy.subscription.entity.Membership;
 import com.academy.subscription.service.MembershipService;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/memberships")
@@ -20,5 +20,10 @@ public class MembershipController {
     @PostMapping
     public Membership createMembership(@RequestBody CreateMembershipRequest request){
         return membershipService.createMembership(request);
+    }
+
+    @GetMapping
+    public List<MembershipSummaryResponse> getAllMembershipsWithOrganizationId(@RequestParam long organizationId){
+        return membershipService.getAllMembersByOrganizationId(organizationId);
     }
 }

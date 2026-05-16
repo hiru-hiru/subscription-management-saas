@@ -1,8 +1,7 @@
 import axios from "axios";
 import type { AnalyticsSummary } from "../types/analytics";
+import { API_BASE_URL } from "../config";
 
-
-const API_BASE_URL = 'http://localhost:8080'
 
 export async function getAnalyticsSummary(organizationId:number): Promise<AnalyticsSummary> {
     const response = await axios.get<AnalyticsSummary>(

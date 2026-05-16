@@ -2,10 +2,8 @@ package com.academy.subscription.utility;
 
 import lombok.NoArgsConstructor;
 
-
+@NoArgsConstructor
 public final class ValidationUtility {
-
-    private ValidationUtility(){}
 
     public static void validatePercentage(double percentage, String fieldName) {
         if (percentage < 0 || percentage > 100) {

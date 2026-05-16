@@ -1,18 +1,18 @@
 package com.academy.subscription.service;
 
 import com.academy.subscription.dto.CreateMembershipRequest;
+import com.academy.subscription.dto.MembershipSummaryResponse;
 import com.academy.subscription.entity.*;
 import com.academy.subscription.exception.DuplicateMembershipException;
 import com.academy.subscription.exception.ResourceNotFoundException;
 import com.academy.subscription.repository.*;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -44,6 +44,23 @@ public class MembershipService {
         member.setUser(user);
 
         return membershipRepository.save(member);
+    }
+
+    public List<MembershipSummaryResponse> getAllMembersByOrganizationId(Long organizationId){
+        List<Membership> membershipList = membershipRepository.findByOrganizationId(organizationId);
+        List<MembershipSummaryResponse> membershipSummaries = new ArrayList<>();
+        for (Membership membership : membershipList){
+            MembershipSummaryResponse membershipSummaryResponse = new MembershipSummaryResponse();
+            membershipSummaryResponse.setUserId(membership.getUser().getId());
+            membershipSummaryResponse.setMembershipId(membership.getId());
+            membershipSummaryResponse.setMembershipStatus(membership.getStatus());
+            membershipSummaryResponse.setRole(membership.getRole());
+            membershipSummaryResponse.setName(membership.getUser().getName());
+            membershipSummaryResponse.setEmail(membership.getUser().getEmail());
+            membershipSummaryResponse.setPhone(membership.getUser().getPhone());
+            membershipSummaries.add(membershipSummaryResponse);
+        }
+        return membershipSummaries;
     }
 
 }
