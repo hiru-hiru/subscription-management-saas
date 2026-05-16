@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getMembers } from '../api/MembershipApi'
+import { getMembers } from '../api/membershipApi'
 import type { Member } from '../types/member'
 
 function MembersPage() {
